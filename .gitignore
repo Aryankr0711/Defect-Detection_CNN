@@ -59,3 +59,4 @@ Thumbs.db
 # Large CSV files (optional - uncomment if too large)
 # train.csv
 # train_clean.csv
+.config/
