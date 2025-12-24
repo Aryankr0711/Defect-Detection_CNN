@@ -44,7 +44,7 @@ class CNNModel(nn.Module):
         return self.classifier(x)
 
 # Model loading variables
-MODEL_ZIP = "cnn_pipeline_model.zip"
+MODEL_ZIP = "backend/cnn_pipeline_model.zip"
 MODEL_PATH = "cnn_pipeline_model.pth"
 model = None
 
