@@ -5,6 +5,7 @@ import torch.nn as nn
 from torchvision import transforms
 from PIL import Image
 import os
+import zipfile
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for React frontend
@@ -43,7 +44,14 @@ class CNNModel(nn.Module):
         return self.classifier(x)
 
 # Load model
-MODEL_PATH = "../cnn_pipeline_model.pth"  # Adjusted path
+MODEL_ZIP = "cnn_pipeline_model.zip"
+MODEL_PATH = "cnn_pipeline_model.pth"
+
+# Extract model if not already extracted
+if not os.path.exists(MODEL_PATH):
+    with zipfile.ZipFile(MODEL_ZIP, 'r') as zip_ref:
+        zip_ref.extractall(".")
+
 checkpoint = torch.load(MODEL_PATH, map_location=DEVICE)
 model = CNNModel(num_classes=2).to(DEVICE)
 model.load_state_dict(checkpoint["model_state_dict"])
