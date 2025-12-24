@@ -45,7 +45,7 @@ function App() {
     formData.append('file', selectedFile);
 
     try {
-      const response = await fetch('https://defect-detection-concept-system.onrender.com/predict', {
+      const response = await fetch('/api/predict', {
         method: 'POST',
         body: formData,
       });
