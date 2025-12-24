@@ -9,7 +9,7 @@
 
 .header-section {
   background: linear-gradient(135deg, #0052a3 0%, #0066cc 100%);
-  padding: 35px 20px;
+  padding: 20px 15px;
   color: white;
   text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -17,7 +17,7 @@
 
 .main-title {
   margin: 0;
-  font-size: 26px;
+  font-size: clamp(18px, 4vw, 26px);
   font-weight: bold;
   line-height: 1.3;
   max-width: 800px;
@@ -26,8 +26,9 @@
 
 .action-bar {
   display: flex;
-  gap: 20px;
-  padding: 20px 30px;
+  flex-direction: column;
+  gap: 15px;
+  padding: 15px;
   background-color: #f5f5f5;
   border-bottom: 1px solid #ddd;
   align-items: center;
@@ -36,27 +37,28 @@
 
 .bar-buttons {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-end;
-  margin-left: auto;
-  margin-right: -200px;
+  justify-content: center;
+  width: 100%;
 }
 
 .action-btn {
-  padding: 15px 28px;
+  padding: 12px 20px;
   background-color: white;
   color: #666;
   border: 1px solid #ddd;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   transition: all 0.3s ease;
+  min-width: 120px;
+  justify-content: center;
 }
 
 .action-btn:hover {
@@ -86,11 +88,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: auto;
 }
 
 .company-logo {
-  height: 120px;
+  height: clamp(60px, 15vw, 120px);
   width: auto;
 }
 
@@ -100,19 +101,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
+  padding: 20px 15px;
   position: relative;
 }
 
 .drop-zone {
   border: 2px dashed #9db3d1;
   border-radius: 8px;
-  padding: 60px 40px;
+  padding: 40px 20px;
   background-color: white;
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   max-width: 500px;
   width: 100%;
 }
@@ -129,26 +130,26 @@
 }
 
 .drop-icon {
-  font-size: 48px;
+  font-size: clamp(32px, 8vw, 48px);
   margin-bottom: 15px;
   color: #9db3d1;
 }
 
 .drop-text {
   margin: 10px 0;
-  font-size: 16px;
+  font-size: clamp(14px, 3.5vw, 16px);
   color: #666;
   font-weight: 500;
 }
 
 .drop-format {
   margin: 5px 0 20px;
-  font-size: 13px;
+  font-size: clamp(11px, 3vw, 13px);
   color: #999;
 }
 
 .choose-btn {
-  padding: 10px 30px;
+  padding: 10px 25px;
   background-color: #5dade2;
   color: white;
   border: none;
@@ -164,7 +165,7 @@
 }
 
 .classify-btn {
-  padding: 15px 50px;
+  padding: 15px 40px;
   background-color: #5dade2;
   color: white;
   border: none;
@@ -174,6 +175,8 @@
   font-weight: 600;
   transition: background-color 0.3s ease;
   margin-top: 20px;
+  width: 100%;
+  max-width: 300px;
 }
 
 .classify-btn:hover:not(:disabled) {
@@ -189,16 +192,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
   width: 100%;
   max-width: 900px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .image-output-section {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
+  grid-template-columns: 1fr;
+  gap: 20px;
   width: 100%;
   margin-bottom: 20px;
 }
@@ -208,7 +211,7 @@
   background-color: white;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 20px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -226,7 +229,7 @@
 
 .preview-image {
   max-width: 100%;
-  max-height: 300px;
+  max-height: 250px;
   border-radius: 4px;
   margin-bottom: 15px;
   object-fit: contain;
@@ -242,14 +245,14 @@
 
 .result-display {
   width: 100%;
-  padding: 40px 20px;
+  padding: 30px 15px;
   background-color: #e8f5e9;
   border-radius: 4px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 15px;
 }
 
 .result-display.error {
@@ -264,13 +267,13 @@
 }
 
 .status-icon {
-  font-size: 56px;
+  font-size: clamp(40px, 10vw, 56px);
   font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 80px;
+  width: clamp(60px, 15vw, 80px);
+  height: clamp(60px, 15vw, 80px);
   border-radius: 50%;
   color: white;
 }
@@ -285,7 +288,7 @@
 
 .result-text {
   margin: 0;
-  font-size: 36px;
+  font-size: clamp(24px, 6vw, 36px);
   color: #2e7d32;
   font-weight: 700;
   text-align: center;
@@ -298,28 +301,97 @@
 
 .result-confidence {
   margin: 0;
-  font-size: 28px;
+  font-size: clamp(20px, 5vw, 28px);
   color: #1976d2;
   font-weight: 700;
   text-align: center;
   width: 100%;
 }
 
-@media (max-width: 768px) {
-  .image-output-section {
-    grid-template-columns: 1fr;
-  }
-}
-
 .footer-section {
   background-color: #9badad;
   color: white;
-  padding: 20px;
+  padding: 15px;
   text-align: center;
-  font-size: 14px;
+  font-size: clamp(12px, 3vw, 14px);
   margin-top: auto;
 }
 
 .footer-section p {
   margin: 0;
+}
+
+/* Tablet and larger screens */
+@media (min-width: 768px) {
+  .header-section {
+    padding: 35px 20px;
+  }
+  
+  .action-bar {
+    flex-direction: row;
+    padding: 20px 30px;
+  }
+  
+  .bar-buttons {
+    justify-content: flex-end;
+    margin-left: auto;
+    margin-right: -200px;
+    width: auto;
+  }
+  
+  .action-btn {
+    padding: 15px 28px;
+    font-size: 16px;
+    min-width: auto;
+  }
+  
+  .content-wrapper {
+    padding: 40px 20px;
+  }
+  
+  .drop-zone {
+    padding: 60px 40px;
+    margin-bottom: 30px;
+  }
+  
+  .image-output-section {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  
+  .image-box,
+  .output-box {
+    padding: 20px;
+  }
+  
+  .preview-image {
+    max-height: 300px;
+  }
+  
+  .result-display {
+    padding: 40px 20px;
+    gap: 20px;
+  }
+  
+  .results-container {
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+  
+  .classify-btn {
+    width: auto;
+    padding: 15px 50px;
+  }
+  
+  .footer-section {
+    padding: 20px;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1024px) {
+  .image-output-section {
+    max-width: 800px;
+    margin: 0 auto 20px;
+  }
 }
