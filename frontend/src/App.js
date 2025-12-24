@@ -76,7 +76,16 @@ function App() {
 
       <div className="action-bar">
         <div className="bar-buttons">
-          <button className="action-btn upload-btn" onClick={() => fileInputRef.current?.click()}>
+          <button className="action-btn upload-btn" onClick={() => {
+            setPrediction('');
+            setConfidence('');
+            setPredictionStatus('');
+            setSelectedFile(null);
+            if (fileInputRef.current) {
+              fileInputRef.current.value = '';
+            }
+            fileInputRef.current?.click();
+          }}>
             <span className="btn-icon">⬆</span>Upload Image
           </button>
           {prediction && (
