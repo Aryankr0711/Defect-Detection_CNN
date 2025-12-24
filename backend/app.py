@@ -83,6 +83,19 @@ def predict_image(image_path):
     }
     return label_map[pred_class], confidence
 
+@app.route('/')
+def home():
+    return jsonify({
+        'message': 'Defect Detection API is running',
+        'endpoints': {
+            'POST /predict': 'Upload image for defect detection'
+        }
+    })
+
+@app.route('/health')
+def health():
+    return jsonify({'status': 'healthy'})
+
 @app.route('/predict', methods=['POST'])
 def predict():
     if 'file' not in request.files:
