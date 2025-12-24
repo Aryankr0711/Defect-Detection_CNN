@@ -13,7 +13,7 @@ CORS(app)  # Enable CORS for React frontend
 # -------------------------
 # DEVICE
 # -------------------------
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+DEVICE = torch.device("cpu")  # Force CPU for deployment
 
 # -------------------------
 # MODEL ARCHITECTURE
@@ -43,19 +43,24 @@ class CNNModel(nn.Module):
         x = self.features(x)
         return self.classifier(x)
 
-# Load model
+# Model loading variables
 MODEL_ZIP = "cnn_pipeline_model.zip"
 MODEL_PATH = "cnn_pipeline_model.pth"
+model = None
 
-# Extract model if not already extracted
-if not os.path.exists(MODEL_PATH):
-    with zipfile.ZipFile(MODEL_ZIP, 'r') as zip_ref:
-        zip_ref.extractall(".")
-
-checkpoint = torch.load(MODEL_PATH, map_location=DEVICE)
-model = CNNModel(num_classes=2).to(DEVICE)
-model.load_state_dict(checkpoint["model_state_dict"])
-model.eval()
+def load_model():
+    global model
+    if model is None:
+        # Extract model if not already extracted
+        if not os.path.exists(MODEL_PATH):
+            with zipfile.ZipFile(MODEL_ZIP, 'r') as zip_ref:
+                zip_ref.extractall(".")
+        
+        checkpoint = torch.load(MODEL_PATH, map_location=DEVICE)
+        model = CNNModel(num_classes=2).to(DEVICE)
+        model.load_state_dict(checkpoint["model_state_dict"])
+        model.eval()
+    return model
 
 IMG_SIZE = (224, 224)
 preprocessing_transform = transforms.Compose([
@@ -64,6 +69,7 @@ preprocessing_transform = transforms.Compose([
 ])
 
 def predict_image(image_path):
+    model = load_model()
     img = Image.open(image_path).convert("RGB")
     img_tensor = preprocessing_transform(img).unsqueeze(0).to(DEVICE)
     with torch.no_grad():
@@ -98,4 +104,5 @@ def predict():
             return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)
